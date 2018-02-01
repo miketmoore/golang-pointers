@@ -31,18 +31,20 @@ func (o *Container) SetThings(things *[]string) {
 func Exchange(a *Container, b *Container, indexToExchange int) {
 	aThings := *a.Things()
 	bThings := *b.Things()
+	if indexToExchange >= 0 && indexToExchange < len(aThings) && len(aThings) == len(bThings) {
 
-	av := aThings[indexToExchange : indexToExchange+1][0]
-	bv := bThings[indexToExchange : indexToExchange+1][0]
+		av := aThings[indexToExchange : indexToExchange+1][0]
+		bv := bThings[indexToExchange : indexToExchange+1][0]
 
-	aThingsNew := aThings[0:indexToExchange]
-	aThingsNew = append(aThingsNew, bv)
-	aThingsNew = append(aThingsNew, aThings[indexToExchange+1:]...)
+		aThingsNew := aThings[0:indexToExchange]
+		aThingsNew = append(aThingsNew, bv)
+		aThingsNew = append(aThingsNew, aThings[indexToExchange+1:]...)
 
-	bThingsNew := bThings[0:indexToExchange]
-	bThingsNew = append(bThingsNew, av)
-	bThingsNew = append(bThingsNew, bThings[indexToExchange+1:]...)
+		bThingsNew := bThings[0:indexToExchange]
+		bThingsNew = append(bThingsNew, av)
+		bThingsNew = append(bThingsNew, bThings[indexToExchange+1:]...)
 
-	a.SetThings(&aThings)
-	b.SetThings(&bThings)
+		a.SetThings(&aThings)
+		b.SetThings(&bThings)
+	}
 }
