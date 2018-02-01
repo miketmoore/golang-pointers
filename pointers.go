@@ -12,8 +12,8 @@ func New(things []string) Container {
 }
 
 // Things returns a pointer to the slice of strings
-func (o *Container) Things() *[]string {
-	return &o.things
+func (o *Container) Things() []string {
+	return o.things
 }
 
 // Pop removes the last value from the internal slice of strings and returns this value
@@ -31,14 +31,14 @@ func (o *Container) Push(s ...string) {
 }
 
 // SetThings updates the internal slice of strings
-func (o *Container) SetThings(things *[]string) {
-	o.things = *things
+func (o *Container) SetThings(things []string) {
+	o.things = things
 }
 
 // Exchange "exchanges" or "swaps" the value located at the specified index, between the two slices
-func Exchange(a *Container, b *Container, indexToExchange int) {
-	aThings := *a.Things()
-	bThings := *b.Things()
+func Exchange(a Container, b Container, indexToExchange int) {
+	aThings := a.Things()
+	bThings := b.Things()
 	if indexToExchange >= 0 && indexToExchange < len(aThings) && len(aThings) == len(bThings) {
 
 		av := aThings[indexToExchange : indexToExchange+1][0]
@@ -52,7 +52,7 @@ func Exchange(a *Container, b *Container, indexToExchange int) {
 		bThingsNew = append(bThingsNew, av)
 		bThingsNew = append(bThingsNew, bThings[indexToExchange+1:]...)
 
-		a.SetThings(&aThings)
-		b.SetThings(&bThings)
+		a.SetThings(aThings)
+		b.SetThings(bThings)
 	}
 }
