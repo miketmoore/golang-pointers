@@ -1,13 +1,21 @@
 package pointers
 
 type Obj struct {
-	stuff []string
+	things []string
 }
 
-func New(stuff []string) Obj {
-	return Obj{stuff: stuff}
+func New(things []string) Obj {
+	return Obj{things: things}
 }
 
-func (o *Obj) Stuff() *[]string {
-	return &o.stuff
+func (o *Obj) Things() *[]string {
+	return &o.things
+}
+
+func (o *Obj) Pop() string {
+	things := o.things
+	l := len(things)
+	thing := things[l-1:][0]
+	o.things = things[l:]
+	return thing
 }
