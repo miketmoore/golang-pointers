@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewObj(t *testing.T) {
+func TestNewContainer(t *testing.T) {
 	o := pointers.New([]string{"a", "b"})
 	assert.Equal(t, []string{"a", "b"}, *o.Things())
 }
@@ -41,4 +41,14 @@ func TestPass(t *testing.T) {
 
 	assert.Equal(t, "pong", (*a.Things())[0])
 	assert.Equal(t, "ping", (*b.Things())[0])
+}
+
+func TestExchange(t *testing.T) {
+	a := pointers.New([]string{"a", "b", "c"})
+	b := pointers.New([]string{"d", "e", "f"})
+
+	pointers.Exchange(&a, &b, 0)
+
+	assert.Equal(t, []string{"d", "b", "c"}, *a.Things())
+	assert.Equal(t, []string{"a", "e", "f"}, *b.Things())
 }
