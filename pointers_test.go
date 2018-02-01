@@ -22,9 +22,9 @@ func TestPop(t *testing.T) {
 	assert.Equal(t, 0, len(remainingThings))
 }
 
-func TestAppend(t *testing.T) {
+func TestPush(t *testing.T) {
 	o := pointers.New([]string{})
-	o.Append("a")
+	o.Push("a")
 	assert.Equal(t, []string{"a"}, *o.Things())
 }
 
@@ -36,8 +36,8 @@ func TestPass(t *testing.T) {
 
 	x = a.Pop()
 	y = b.Pop()
-	b.Append(x)
-	a.Append(y)
+	b.Push(x)
+	a.Push(y)
 
 	assert.Equal(t, "pong", (*a.Things())[0])
 	assert.Equal(t, "ping", (*b.Things())[0])
