@@ -8,8 +8,13 @@ import (
 )
 
 func TestNewContainer(t *testing.T) {
-	o := pointers.New([]string{"a", "b"})
-	assert.Equal(t, []string{"a", "b"}, *o.Things())
+	o := pointers.New([]string{})
+	assert.Equal(t, []string{}, *o.Things())
+}
+
+func TestGetThings(t *testing.T) {
+	o := pointers.New([]string{"a"})
+	assert.Equal(t, []string{"a"}, *o.Things())
 }
 
 func TestPop(t *testing.T) {
