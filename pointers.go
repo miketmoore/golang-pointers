@@ -19,3 +19,7 @@ func (o *Obj) Pop() string {
 	o.things = things[l:]
 	return thing
 }
+
+func (o *Obj) Append(s ...string) {
+	o.things = append(o.things, s...)
+}
